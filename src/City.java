@@ -17,6 +17,11 @@ public class City {
         setMegacity(population);
     }
 
+    public int timeDifference(City city) {
+        int timeDifference = this.getTimeZone() - city.getTimeZone();
+        return timeDifference;
+    }
+
     public void setCityName(String cityName) {
         this.cityName = cityName;
     }

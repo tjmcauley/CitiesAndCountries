@@ -6,6 +6,6 @@ public class Main {
         argentina.addCity("Cordoba", 1454650, -3);
         argentina.addCity("Rosario", 1236000, -3);
 
-        System.out.println(argentina);
+        System.out.println(argentina.getCityByName("Cordoba").timeDifference(argentina.getCityByName("Rosario")));
     }
 }

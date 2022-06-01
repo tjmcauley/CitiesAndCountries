@@ -22,6 +22,15 @@ public class Country {
         this.popNotInCities = calcPopNotInCities(this.countryPopulation, this.cities);
     }
 
+    public City getCityByName(String cityName) {
+        for (City elem: cities) {
+            if (elem.getCityName().equals(cityName)) {
+                return elem;
+            }
+        }
+        return null;
+    }
+
     public void setCountryName(String countryName) {
         this.countryName = countryName;
     }
