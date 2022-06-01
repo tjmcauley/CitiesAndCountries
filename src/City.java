@@ -11,6 +11,12 @@ public class City {
     private boolean isMegacity;
 
     public City(String cityName, int population, int timeZone) {
+        if (population <= 0) {
+            population = 0;
+        }
+        if (timeZone < -12 || timeZone > 11) {
+            timeZone = 0;
+        }
         setCityName(cityName);
         setCityPopulation(population);
         setTimeZone(timeZone);
@@ -20,6 +26,13 @@ public class City {
     public int timeDifference(City city) {
         int timeDifference = this.getTimeZone() - city.getTimeZone();
         return timeDifference;
+    }
+
+    public boolean isLegalData() {
+        if (this.getCityPopulation() > 0 && (this.getTimeZone() >= -12 && this.getTimeZone() <= 11)) {
+            return true;
+        }
+        return false;
     }
 
     public void setCityName(String cityName) {
@@ -59,7 +72,7 @@ public class City {
 
     public String toString() {
         String buildDisplay = getCityName() + CITY_POPULATION_MESSAGE + getCityPopulation() + CITY_TIME_ZONE_MESSAGE + getTimeZone();
-        if (this.getCityPopulation() >= 10000000) {
+        if (getMegacity()) {
             buildDisplay += IS_MEGACITY_MESSAGE;
         } else {
             buildDisplay += IS_NOT_MEGACITY_MESSAGE;

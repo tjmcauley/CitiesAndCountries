@@ -12,11 +12,17 @@ public class Country {
     private static ArrayList<City> cities = new ArrayList<>();
 
     public Country(String countryName, int population) {
+        if (population <= 0) {
+            population = 0;
+        }
         setCountryName(countryName);
         setCountryPopulation(population);
     }
 
     public void addCity(String cityName, int population, int timeZone) {
+        if (population > this.getCountryPopulation()) {
+            population = 0;
+        }
         City city = new City(cityName, population, timeZone);
         this.cities.add(city);
         this.popNotInCities = calcPopNotInCities(this.countryPopulation, this.cities);
@@ -29,6 +35,23 @@ public class Country {
             }
         }
         return null;
+    }
+
+    public boolean deleteCity(String cityName) {
+        for (City elem: cities) {
+            if (elem.getCityName().equals(cityName)) {
+                cities.remove(elem);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean isLegalData() {
+        if (this.getCountryPopulation() > 0) {
+            return true;
+        }
+        return false;
     }
 
     public void setCountryName(String countryName) {
